@@ -1,26 +1,49 @@
 class Solution {
     public int minOperations(String s) {
         int n = s.length();
-        boolean sorted = true;
-        for (int i = 1; i < n; i++) {
-            if (s.charAt(i) < s.charAt(i - 1)) {
-                sorted = false;
-                break;
+
+        if(isSorted(s)) return 0;
+        if(n == 2) return -1;
+
+        char min = min_Element(s,0,n-1);
+        char max = max_Element(s,0,n-1);
+        if(s.charAt(0) == min || s.charAt(n-1) == max) return 1;
+
+        char min_mid = min_Element(s,1,n-2);
+        char max_mid = max_Element(s,1,n-2);
+
+        if(s.charAt(0) > max_mid && s.charAt(n-1) < min_mid) return 3;
+        return 2;
+    }
+
+    public char min_Element(String s, int i,int n){
+        char res = s.charAt(i);
+
+        for(i = 1 ;i <= n ;i++){
+            if(s.charAt(i) < res){
+                res = s.charAt(i);
             }
         }
-        if (sorted) return 0;
-        if (n == 2) return -1;
-        char mn = s.charAt(0), mx = s.charAt(0);
-        for (int i = 1; i < n; i++) {
-            char c = s.charAt(i);
-            if (c < mn) mn = c;
-            if (c > mx) mx = c;
+        return res;
+    }
+
+    public char max_Element(String s, int i,int n){
+        char res = s.charAt(i);
+
+        for(i = 1 ;i <= n ;i++){
+            if(s.charAt(i) > res){
+                res = s.charAt(i);
+            }
         }
-        if (s.charAt(0) == mn || s.charAt(n - 1) == mx) return 1;
-        for (int i = 1; i < n - 1; i++) {
-            char c = s.charAt(i);
-            if (c == mn || c == mx) return 2;
+        return res;
+    }
+
+    public boolean isSorted(String s){
+
+        for(int i = 1;i < s.length();i++){
+
+            if(s.charAt(i-1) > s.charAt(i)) return false;
         }
-        return 3;
+        return true;
     }
 }
