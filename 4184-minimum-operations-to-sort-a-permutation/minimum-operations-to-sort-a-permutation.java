@@ -1,3 +1,5 @@
+// understand from mik
+
 class Solution {
     public int minOperations(int[] nums) {
         int n = nums.length;
