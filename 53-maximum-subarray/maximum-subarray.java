@@ -5,12 +5,9 @@ class Solution { // use kadane algorithms
         int sum = 0;
         for(int i = 0;i < n;i++){
             sum += nums[i];
-
+            res = Math.max(res,sum);    
             if(sum < 0){
-                res = Math.max(res,sum);    
                 sum = 0;
-            }else{
-                res = Math.max(res,sum);    
             }
         }
         return res;
