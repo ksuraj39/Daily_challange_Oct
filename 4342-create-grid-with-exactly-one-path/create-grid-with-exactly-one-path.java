@@ -3,16 +3,15 @@ class Solution {
         String [] res = new String[m];
 
         for(int i = 0;i < m;i++){
-            String s = "";
+            StringBuilder sb = new StringBuilder();
             for(int j = 0;j < n;j++){
-
                 if(i == m-1 || j == 0){
-                    s = s + ".";
+                   sb.append(".");
                 }else{
-                    s = s + "#";
+                   sb.append("#");
                 }
             }
-            res[i] = s;
+            res[i] = sb.toString();
         }
         return res;
 
