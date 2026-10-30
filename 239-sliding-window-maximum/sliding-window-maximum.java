@@ -7,12 +7,14 @@ class Solution {
         List<Integer> ll = new ArrayList<>();
         for(int i = 0;i < n;i++){
 
-            while(!ll.isEmpty() && ll.get(0) <= i - k){
-                ll.remove(0);
-            }
+            
 
-            while(!ll.isEmpty() && nums[ll.get(ll.size()-1)] < nums[i]){
-                ll.remove(ll.size()-1);
+            while(!ll.isEmpty() && (ll.get(0) <= i - k || nums[ll.get(ll.size()-1)] < nums[i])){
+                if(ll.get(0) <= i - k){
+                    ll.remove(0);
+                }else{
+                    ll.remove(ll.size()-1);
+                }
             }
             ll.add(i);
 
