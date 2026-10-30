@@ -2,13 +2,12 @@ class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
         int n = nums.length;
 
+        if(k > n ) return null;
+
         int[]res = new int[n-k+1];
 
         List<Integer> ll = new ArrayList<>();
         for(int i = 0;i < n;i++){
-
-            
-
             while(!ll.isEmpty() && (ll.get(0) <= i - k || nums[ll.get(ll.size()-1)] < nums[i])){
                 if(ll.get(0) <= i - k){
                     ll.remove(0);
